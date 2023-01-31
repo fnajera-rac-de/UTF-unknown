@@ -41,6 +41,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 using UtfUnknown.Core;
 using UtfUnknown.Core.Probers;
@@ -53,6 +54,15 @@ namespace UtfUnknown
     /// </summary>
     public class CharsetDetector
     {
+
+#if NETSTANDARD && !NETSTANDARD1_0 || NETCOREAPP3_0
+        /// <summary>
+        /// Set this property to CodePagesEncodingProvider.Instance.GetEncoding if it's available in your code
+        /// and if you've configured the CodePagesEncodingProvider properly, in order to expand the capabilities of this library.
+        /// </summary>
+        public static Func<string, Encoding> CodePagesEncodingProviderGetEncoding { get; set; }
+#endif
+
         internal InputState InputState;
 
         /// <summary>

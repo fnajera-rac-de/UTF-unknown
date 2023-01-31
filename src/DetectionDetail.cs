@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -102,7 +102,7 @@ namespace UtfUnknown
                 exception is NotSupportedException)
             {
 #if NETSTANDARD && !NETSTANDARD1_0 || NETCOREAPP3_0
-                return CodePagesEncodingProvider.Instance.GetEncoding(encodingName);
+                return CharsetDetector.CodePagesEncodingProviderGetEncoding?.Invoke(encodingName);
 #else
                 return null;
 #endif
