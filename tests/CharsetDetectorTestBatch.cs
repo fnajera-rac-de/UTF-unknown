@@ -1,4 +1,4 @@
-// Author:
+﻿// Author:
 //    Rudi Pettazzi <rudi.pettazzi@gmail.com>
 //    Julian Verdurmen
 //
@@ -25,6 +25,9 @@ namespace UtfUnknown.Tests
         public CharsetDetectorTestBatch()
         {
             _logWriter = new StreamWriter(Path.Combine(TESTS_ROOT, "test-diag.log"));
+#if NETCOREAPP
+            CharsetDetector.CodePagesEncodingProviderGetEncoding = System.Text.CodePagesEncodingProvider.Instance.GetEncoding;
+#endif
         }
 
         static string FindRootPath()

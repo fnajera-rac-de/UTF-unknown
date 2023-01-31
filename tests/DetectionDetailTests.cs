@@ -10,6 +10,13 @@ namespace UtfUnknown.Tests
     public class DetectionDetailTests
     {
 
+        public DetectionDetailTests()
+        {
+#if NETCOREAPP
+            CharsetDetector.CodePagesEncodingProviderGetEncoding = System.Text.CodePagesEncodingProvider.Instance.GetEncoding;
+#endif
+        }
+
         [TestCaseSource(nameof(EncodingNames))]
         public void DetectionDetailGetEncodingIsNotNull(string codepageName)
         {
